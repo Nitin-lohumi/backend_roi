@@ -4,8 +4,8 @@ from RoI_functions import get_matched_images_paths_with_ranking
 import base64
 import cv2
 import os
-dataset_path = '../Frontend/public/Animals'
-UPLOAD_FOLDER = '../Frontend/public/QueryImages'
+dataset_path = 'Animals'
+UPLOAD_FOLDER = 'QueryImages'
 image_routes = Blueprint('image_routes', __name__)
 CORS(image_routes)
 @image_routes.route('/search', methods=['POST'])
@@ -28,7 +28,7 @@ def search():
         h=rois['height']
         image_data = image_data + '=' * (4 - len(image_data) % 4)     
         image_binary = base64.b64decode(image_data)
-        image_filename = 'Image_Query.jpg' 
+        image_filename = 'QueryImage.jpg' 
         image_path = os.path.join(UPLOAD_FOLDER, image_filename).replace("\\", "/")
         with open(image_path, 'wb') as image_file:
             image_file.write(image_binary)

@@ -31,7 +31,7 @@ def load_images_from_folder(folder):
 
 
 
-def get_matched_images_paths_with_ranking(query_image, image_folder, threshold=150, min_matches=200):
+def get_matched_images_paths_with_ranking(query_image, image_folder, threshold=250, min_matches=20):
     images, filenames = load_images_from_folder(image_folder)
     kp1, des1 = compute_sift_features(query_image)
 
@@ -52,7 +52,8 @@ def get_matched_images_paths_with_ranking(query_image, image_folder, threshold=1
         total_matches += len(good_matches)
         if len(good_matches) >= min_matches:
             matched_photos_count += 1
-            matched_images.append((len(good_matches), os.path.join(image_folder, filename).replace("\\", "/")))
+            # matched_images.append((len(good_matches), os.path.join(image_folder, filename).replace("\\", "/")))
+            matched_images.append((len(good_matches), filename))
     matched_images = sorted(matched_images, key=lambda x: x[0], reverse=True)
     matched_image_paths = [image[1] for image in matched_images]
     print("\nSummary:")
