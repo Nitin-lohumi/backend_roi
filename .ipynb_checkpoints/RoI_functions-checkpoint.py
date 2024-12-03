@@ -31,7 +31,7 @@ def load_images_from_folder(folder):
 
 
 
-def get_matched_images_paths_with_ranking(query_image, image_folder, threshold=320, min_matches=230):
+def get_matched_images_paths_with_ranking(query_image, image_folder, threshold=150, min_matches=200):
     images, filenames = load_images_from_folder(image_folder)
     kp1, des1 = compute_sift_features(query_image)
 
